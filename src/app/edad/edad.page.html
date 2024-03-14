@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Edad.</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Edad.</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <form [formGroup]="edadForm">
+    <ion-card>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input formControlName="nombre" required></ion-input>
+        </ion-item>
+  
+        <ion-button expand="full" (click)="determinarEdad()">Determinar Edad</ion-button>
+      </ion-card-content>
+    </ion-card>
+  
+    <ion-card *ngIf="respuestaEdad">
+      <ion-card-header>{{ respuestaEdad.age }}</ion-card-header>
+      <ion-card-content>
+        <div *ngIf="respuestaEdad.age < 18">
+          <img src="assets/img/jovenes.png" alt="Joven">
+          <p>Es joven</p>
+        </div>
+        <div *ngIf="respuestaEdad.age >= 18 && respuestaEdad.age <= 65">
+          <img src="assets/img/adultos.png" alt="Adulto">
+          <p>Es adulto</p>
+        </div>
+        <div *ngIf="respuestaEdad.age > 65">
+          <img src="assets/img/ancianos.png" alt="Anciano">
+          <p>Es anciano</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </form>
+</ion-content>
